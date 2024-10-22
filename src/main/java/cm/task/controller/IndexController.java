@@ -42,8 +42,6 @@ public class IndexController implements Initializable {
 
     private final ObservableList <Task> taskList =
             FXCollections.observableArrayList();
-    //Al ser de tipo Observable cualquier cambio que hagamos sobre esta lista
-    //va a afectar también a la información de la tabla.
 
     @FXML
     private TextField nameTaskText;
@@ -65,8 +63,7 @@ public class IndexController implements Initializable {
     }
 
     private void configureColumns(){
-        idTaskColumn.setCellValueFactory(new PropertyValueFactory<>("idTask")); //Tengo que poner el nombre de los atributos de la clase del paquete model
-                                                                                   //si no no va a poder cargar la información.
+        idTaskColumn.setCellValueFactory(new PropertyValueFactory<>("idTask"));
         taskTaskColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         managerTaskColumn.setCellValueFactory(new PropertyValueFactory<>("manager"));
         statusTaskColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
@@ -83,9 +80,7 @@ public class IndexController implements Initializable {
 
         if(nameTaskText.getText().isEmpty()){
             showMessage("Validation error." , "Must display a message.");
-            nameTaskText.requestFocus(); //Este método se utiliza para solicitar
-                                         //que un componente obtenga el foco del teclado.
-            return;
+            nameTaskText.requestFocus();
         }else{
             Task task = new Task();
             collectDataForm(task);
